@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TACTICAL TERMINAL | Raid Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+        }
+        /* HUD Glass Effect */
+        .hud-glass {
+            background-color: rgba(53, 53, 53, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        /* Metallic Polish Gradient */
+        .metallic-polish {
+            background: linear-gradient(135deg, #ffb3b0 0%, #e26c6c 100%);
+        }
+        /* Hide scrollbar for cleaner UI */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-highest": "#353535",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#dfe8a6",
+                        "on-secondary-fixed-variant": "#554500",
+                        "inverse-on-surface": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#434b18",
+                        "on-secondary-container": "#453800",
+                        "surface-tint": "#ffb3b0",
+                        "background": "#131313",
+                        "secondary": "#e7c433",
+                        "primary": "#ffb3b0",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#e7c433",
+                        "on-primary": "#630c14",
+                        "primary-fixed": "#ffdad8",
+                        "tertiary-container": "#8d965b",
+                        "tertiary": "#c3cc8c",
+                        "tertiary-fixed-dim": "#c3cc8c",
+                        "primary-fixed-dim": "#ffb3b0",
+                        "secondary-container": "#c1a100",
+                        "primary-container": "#e26c6c",
+                        "on-secondary": "#3b2f00",
+                        "outline": "#a48b89",
+                        "on-tertiary-fixed": "#191e00",
+                        "on-primary-container": "#5a040f",
+                        "on-primary-fixed": "#410006",
+                        "on-error": "#690005",
+                        "on-tertiary": "#2d3404",
+                        "on-tertiary-container": "#262d00",
+                        "surface": "#131313",
+                        "outline-variant": "#564241",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#832428",
+                        "surface-container": "#20201f",
+                        "on-background": "#e5e2e1",
+                        "surface-variant": "#353535",
+                        "secondary-fixed": "#ffe174",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface-variant": "#ddc0be",
+                        "inverse-primary": "#a23c3e",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-bright": "#393939"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-body text-on-surface bg-surface selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131313] border-b-2 border-[#20201f]">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-[#ffb3b0] uppercase font-headline">TACTICAL TERMINAL</span>
+<nav class="hidden md:flex gap-6">
+<a class="font-headline uppercase tracking-wider text-[#ffb3b0] border-b-2 border-[#ffb3b0] pb-1 hover:bg-[#353535] transition-colors" href="/calculator">CALCULATOR</a>
+<a class="font-headline uppercase tracking-wider text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors" href="/database">DATABASE</a>
+<a class="font-headline uppercase tracking-wider text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors" href="/explosives">EXPLOSIVES</a>
+<a class="font-headline uppercase tracking-wider text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors" href="/settings">SETTINGS</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#e5e2e1] opacity-70 hover:text-[#ffb3b0] cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-[#e5e2e1] opacity-70 hover:text-[#ffb3b0] cursor-pointer">settings</span>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-16 bg-[#20201f] border-r-4 border-[#131313] w-64 z-40">
+<div class="p-6 border-b border-surface-container-highest flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">person</span>
+</div>
+<div>
+<div class="text-sm font-black text-[#e7c433] font-headline">OPERATOR_01</div>
+<div class="text-[10px] opacity-50 font-label tracking-widest uppercase">V.2.04-STABLE</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<div class="px-2 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-[#353535] text-[#ffb3b0] border-l-4 border-[#e7c433] font-headline font-medium transition-all translate-x-1 duration-100" href="/calculator">
+<span class="material-symbols-outlined">calculate</span> Raid Hub
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] font-headline font-medium transition-all" href="/database">
+<span class="material-symbols-outlined">database</span> Item DB
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] font-headline font-medium transition-all" href="/explosives">
+<span class="material-symbols-outlined">military_tech</span> Explosives
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] font-headline font-medium transition-all" href="/settings">
+<span class="material-symbols-outlined">tune</span> Settings
+                </a>
+</div>
+</nav>
+<div class="p-4 bg-surface-container-lowest">
+<div class="text-[10px] text-tertiary font-label flex items-center gap-2 mb-2">
+<span class="w-2 h-2 bg-tertiary animate-pulse"></span> SYSTEM LIVE
+            </div>
+<div class="h-1 bg-surface-container-highest w-full">
+<div class="h-full bg-secondary w-2/3"></div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:pl-64 pt-16 pb-12 min-h-screen">
+<div class="p-6 md:p-10 max-w-7xl mx-auto">
+<!-- Page Header HUD Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6">
+<div class="space-y-1">
+<span class="text-secondary font-label text-xs tracking-[0.3em] uppercase">Tactical Analysis Engine</span>
+<h1 class="text-4xl md:text-6xl font-black font-headline tracking-tight uppercase">RAID_CALC_V2</h1>
+<div class="flex items-center gap-4 mt-2">
+<div class="px-2 py-0.5 bg-surface-container-highest text-[10px] font-label border-l-2 border-primary">GRID: 14-B</div>
+<div class="px-2 py-0.5 bg-surface-container-highest text-[10px] font-label border-l-2 border-secondary">ZONE: RED</div>
+</div>
+</div>
+<!-- Quick Summary HUD -->
+<div class="hud-glass p-6 w-full md:w-auto min-w-[320px] flex gap-8">
+<div class="flex-1">
+<div class="text-[10px] font-label uppercase opacity-50 mb-1">Target Intensity</div>
+<div class="text-2xl font-black font-headline text-error">CRITICAL</div>
+</div>
+<div class="flex-1">
+<div class="text-[10px] font-label uppercase opacity-50 mb-1">Total Time</div>
+<div class="text-2xl font-black font-headline text-secondary">08:42<span class="text-xs opacity-50 ml-1">S</span></div>
+</div>
+</div>
+</div>
+<!-- Bento Layout Grid -->
+<div class="grid grid-cols-12 gap-4">
+<!-- Main Selection Area (8 Columns) -->
+<div class="col-span-12 xl:col-span-8 space-y-4">
+<!-- Target Selector Tabs -->
+<div class="bg-surface-container p-1 flex gap-1">
+<button class="flex-1 bg-surface-container-highest text-primary font-headline py-3 text-sm font-bold uppercase tracking-widest border-b-2 border-primary">Structural</button>
+<button class="flex-1 hover:bg-surface-container-highest text-on-surface opacity-50 py-3 text-sm font-headline uppercase tracking-widest">Deployables</button>
+<button class="flex-1 hover:bg-surface-container-highest text-on-surface opacity-50 py-3 text-sm font-headline uppercase tracking-widest">Electronic</button>
+</div>
+<!-- Visual Grid of Targets -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Wall Item -->
+<div class="group bg-surface-container p-0 hover:bg-surface-container-high cursor-pointer transition-all">
+<div class="h-32 bg-surface-container-low flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-5xl opacity-20 group-hover:opacity-40 transition-opacity">wall_art</span>
+<div class="absolute bottom-2 left-2 px-1 bg-primary text-on-primary text-[10px] font-bold">HP: 1000</div>
+</div>
+<div class="p-3 border-l-2 border-transparent group-hover:border-primary">
+<div class="text-xs font-label uppercase opacity-50 mb-1">Stone</div>
+<div class="text-sm font-headline font-bold">EXTERNAL WALL</div>
+</div>
+</div>
+<!-- Door Item -->
+<div class="group bg-surface-container p-0 hover:bg-surface-container-high cursor-pointer transition-all">
+<div class="h-32 bg-surface-container-low flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-5xl opacity-20 group-hover:opacity-40 transition-opacity">door_back</span>
+<div class="absolute bottom-2 left-2 px-1 bg-secondary text-on-secondary text-[10px] font-bold">HP: 250</div>
+</div>
+<div class="p-3 border-l-2 border-transparent group-hover:border-secondary">
+<div class="text-xs font-label uppercase opacity-50 mb-1">Metal</div>
+<div class="text-sm font-headline font-bold">SHEET DOOR</div>
+</div>
+</div>
+<!-- Armored Wall -->
+<div class="group bg-surface-container p-0 hover:bg-surface-container-high cursor-pointer transition-all">
+<div class="h-32 bg-surface-container-low flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-5xl opacity-20 group-hover:opacity-40 transition-opacity">shield</span>
+<div class="absolute bottom-2 left-2 px-1 bg-error text-on-error text-[10px] font-bold">HP: 2000</div>
+</div>
+<div class="p-3 border-l-2 border-transparent group-hover:border-error">
+<div class="text-xs font-label uppercase opacity-50 mb-1">HQM</div>
+<div class="text-sm font-headline font-bold">ARMORED WALL</div>
+</div>
+</div>
+<!-- Garage Door -->
+<div class="group bg-surface-container p-0 hover:bg-surface-container-high cursor-pointer transition-all">
+<div class="h-32 bg-surface-container-low flex items-center justify-center relative overflow-hidden">
+<span class="material-symbols-outlined text-5xl opacity-20 group-hover:opacity-40 transition-opacity">door_sliding</span>
+<div class="absolute bottom-2 left-2 px-1 bg-secondary text-on-secondary text-[10px] font-bold">HP: 600</div>
+</div>
+<div class="p-3 border-l-2 border-transparent group-hover:border-secondary">
+<div class="text-xs font-label uppercase opacity-50 mb-1">Metal</div>
+<div class="text-sm font-headline font-bold">GARAGE DOOR</div>
+</div>
+</div>
+</div>
+<!-- Selected Items List -->
+<div class="bg-surface-container">
+<div class="px-6 py-4 border-b border-surface-container-highest flex justify-between items-center">
+<h3 class="font-headline font-bold uppercase tracking-wider text-xs">Active Raid Plan</h3>
+<button class="text-[10px] font-label text-error hover:underline uppercase">Clear Queue</button>
+</div>
+<div class="divide-y divide-surface-container-highest">
+<!-- Item Row 1 -->
+<div class="px-6 py-4 flex items-center gap-6">
+<div class="w-12 h-12 bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">wall_art</span>
+</div>
+<div class="flex-1">
+<div class="text-sm font-headline font-bold">STONE WALL</div>
+<div class="text-[10px] font-label uppercase opacity-40">2 C4 OR 4 ROCKETS</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 bg-surface-container-highest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center">-</button>
+<span class="font-headline font-black w-8 text-center text-xl">04</span>
+<button class="w-8 h-8 bg-surface-container-highest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center">+</button>
+</div>
+</div>
+<!-- Item Row 2 -->
+<div class="px-6 py-4 flex items-center gap-6">
+<div class="w-12 h-12 bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">door_sliding</span>
+</div>
+<div class="flex-1">
+<div class="text-sm font-headline font-bold">GARAGE DOOR</div>
+<div class="text-[10px] font-label uppercase opacity-40">1 C4 OR 3 ROCKETS</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-8 h-8 bg-surface-container-highest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center">-</button>
+<span class="font-headline font-black w-8 text-center text-xl">02</span>
+<button class="w-8 h-8 bg-surface-container-highest hover:bg-primary hover:text-on-primary transition-colors flex items-center justify-center">+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar & Summary (4 Columns) -->
+<div class="col-span-12 xl:col-span-4 space-y-4">
+<!-- Cost Analysis Module -->
+<div class="bg-surface-container border-l-4 border-secondary p-6">
+<h2 class="font-headline font-black text-xl uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">analytics</span>
+                            RESOURCE_YIELD
+                        </h2>
+<div class="space-y-6">
+<!-- Resource Row: Sulfur -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs uppercase opacity-60">SULFUR</span>
+<span class="font-headline font-black text-2xl text-secondary">18,400</span>
+</div>
+<div class="h-1 bg-surface-container-highest">
+<div class="h-full bg-secondary w-4/5"></div>
+</div>
+</div>
+<!-- Resource Row: Charcoal -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs uppercase opacity-60">CHARCOAL</span>
+<span class="font-headline font-black text-2xl text-on-surface">26,000</span>
+</div>
+<div class="h-1 bg-surface-container-highest">
+<div class="h-full bg-on-surface w-full"></div>
+</div>
+</div>
+<!-- Resource Row: Metal Frags -->
+<div>
+<div class="flex justify-between items-end mb-2">
+<span class="font-label text-xs uppercase opacity-60">METAL FRAGS</span>
+<span class="font-headline font-black text-2xl text-tertiary">4,200</span>
+</div>
+<div class="h-1 bg-surface-container-highest">
+<div class="h-full bg-tertiary w-1/3"></div>
+</div>
+</div>
+</div>
+<!-- Explosive Inventory -->
+<div class="mt-10 grid grid-cols-2 gap-2">
+<div class="bg-surface-container-lowest p-4 text-center">
+<div class="text-xs font-label opacity-40 uppercase">Rockets</div>
+<div class="text-3xl font-black font-headline">16</div>
+</div>
+<div class="bg-surface-container-lowest p-4 text-center">
+<div class="text-xs font-label opacity-40 uppercase">C4</div>
+<div class="text-3xl font-black font-headline">08</div>
+</div>
+</div>
+<button class="w-full mt-6 py-4 font-headline font-black text-xl uppercase tracking-widest metallic-polish text-on-primary hover:brightness-110 active:opacity-80 transition-all">
+                            GENERATE CRAFT LIST
+                        </button>
+</div>
+<!-- Quick Add Sidebar -->
+<div class="bg-surface-container-low p-6">
+<h3 class="font-headline font-bold uppercase tracking-wider text-xs mb-4 text-primary">Quick Add Templates</h3>
+<div class="space-y-2">
+<button class="w-full text-left p-3 bg-surface-container hover:bg-surface-container-highest border-l-2 border-transparent hover:border-primary transition-all flex justify-between items-center">
+<span class="text-xs font-bold font-headline uppercase">TC Path (Stone)</span>
+<span class="material-symbols-outlined text-sm">add_circle</span>
+</button>
+<button class="w-full text-left p-3 bg-surface-container hover:bg-surface-container-highest border-l-2 border-transparent hover:border-primary transition-all flex justify-between items-center">
+<span class="text-xs font-bold font-headline uppercase">Standard Bunker</span>
+<span class="material-symbols-outlined text-sm">add_circle</span>
+</button>
+<button class="w-full text-left p-3 bg-surface-container hover:bg-surface-container-highest border-l-2 border-transparent hover:border-primary transition-all flex justify-between items-center">
+<span class="text-xs font-bold font-headline uppercase">Compound Wall breach</span>
+<span class="material-symbols-outlined text-sm">add_circle</span>
+</button>
+</div>
+</div>
+<!-- Tactical Map Visual (Static Placeholder) -->
+<div class="bg-surface-container h-48 relative overflow-hidden grayscale contrast-125 opacity-40">
+<img alt="Topographic satellite view of rugged island terrain with grid overlays and tactical markers" class="w-full h-full object-cover" data-alt="Topographic satellite view of rugged island terrain with grid overlays and tactical markers in military style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkR2S1P-RH6leas4iC1aYx1Fg6_zpBvosgnR6XbBdOe_6yXxFiuXXs_LiTosFjvUC-qg8dj2_RUAAjaG1zdkaHPx0Vjqzi5ks_jLJdRrm6aW-03mJ4Gsgu_M4sEL-CXpMzpydPkzD5QsLZ3xQlWV6PTiK-O82-G5eUaHFE_cZZjq_SbpUe48oU8lTslsMji_jxSmkUz9fW3Jed9jXvC1ma9A8lz0ji3xSyy05v0cVk98tQtgain9KSPp4L3HlNdN5S5uu7uTJ51vL5"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute top-2 left-2 px-2 py-1 bg-error text-on-error font-label text-[8px] uppercase">LIVE_SCAN_ACTIVE</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="fixed bottom-0 w-full flex justify-between items-center px-4 py-2 z-40 bg-[#0e0e0e] border-t-2 border-[#20201f]">
+<div class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#e7c433]">
+            SYSTEM STATUS: OPTIMAL | GRID 14-B
+        </div>
+<div class="flex gap-4">
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0]" href="#">MANUAL</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0]" href="#">CHANGELOG</a>
+<a class="font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0]" href="#">SUPPORT</a>
+</div>
+</footer>
+<!-- Mobile Navigation Shell (Bottom) -->
+<div class="md:hidden fixed bottom-0 left-0 w-full h-16 bg-surface-container border-t-4 border-surface flex items-center justify-around z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">calculate</span>
+<span class="text-[8px] font-bold uppercase">Raid</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface opacity-40">
+<span class="material-symbols-outlined">database</span>
+<span class="text-[8px] font-bold uppercase">Items</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface opacity-40">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="text-[8px] font-bold uppercase">Explosives</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface opacity-40">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[8px] font-bold uppercase">Profile</span>
+</button>
+</div>
+</body></html>
