@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary-fixed-dim": "#ffb3b0",
+            "background": "#131313",
+            "secondary": "#e7c433",
+            "inverse-on-surface": "#313030",
+            "surface-variant": "#353535",
+            "surface-container": "#20201f",
+            "on-secondary-container": "#453800",
+            "tertiary": "#c3cc8c",
+            "on-background": "#e5e2e1",
+            "surface-container-lowest": "#0e0e0e",
+            "on-primary-fixed": "#410006",
+            "surface-container-highest": "#353535",
+            "secondary-fixed-dim": "#e7c433",
+            "on-secondary-fixed": "#221b00",
+            "primary-container": "#e26c6c",
+            "primary-fixed": "#ffdad8",
+            "error": "#ffb4ab",
+            "outline-variant": "#564241",
+            "on-secondary": "#3b2f00",
+            "on-tertiary": "#2d3404",
+            "surface-container-high": "#2a2a2a",
+            "on-primary-fixed-variant": "#832428",
+            "inverse-surface": "#e5e2e1",
+            "surface": "#131313",
+            "on-surface-variant": "#ddc0be",
+            "inverse-primary": "#a23c3e",
+            "secondary-fixed": "#ffe174",
+            "on-primary": "#630c14",
+            "secondary-container": "#c1a100",
+            "tertiary-fixed-dim": "#c3cc8c",
+            "primary": "#ffb3b0",
+            "surface-dim": "#131313",
+            "on-secondary-fixed-variant": "#554500",
+            "tertiary-fixed": "#dfe8a6",
+            "on-tertiary-container": "#262d00",
+            "error-container": "#93000a",
+            "surface-tint": "#ffb3b0",
+            "on-error": "#690005",
+            "on-primary-container": "#5a040f",
+            "outline": "#a48b89",
+            "tertiary-container": "#8d965b",
+            "on-tertiary-fixed-variant": "#434b18",
+            "on-tertiary-fixed": "#191e00",
+            "on-error-container": "#ffdad6",
+            "surface-bright": "#393939",
+            "surface-container-low": "#1c1b1b",
+            "on-surface": "#e5e2e1"
+          },
+          fontFamily: {
+            "headline": ["Space Grotesk"],
+            "body": ["Inter"],
+            "label": ["Space Grotesk"]
+          },
+          borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    input[type='range'] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    input[type='range']::-webkit-slider-runnable-track {
+      background: #353535;
+      height: 12px;
+      border-radius: 0px;
+    }
+    input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 24px;
+      width: 12px;
+      background: #e7c433;
+      margin-top: -6px;
+      border-radius: 0px;
+      box-shadow: 0px 0px 8px rgba(231, 196, 51, 0.4);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-[#131313] px-4 h-16 flex justify-between items-center border-b-0">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#ffb3b0]" data-icon="terminal">terminal</span>
+<h1 class="font-['Space_Grotesk'] uppercase tracking-tighter text-lg font-bold text-[#ffb3b0]">TACTICAL TERMINAL</h1>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-highest p-1 px-2 border-l-2 border-primary">
+<div class="text-[10px] font-label uppercase text-primary">Sector 7-G</div>
+<div class="w-8 h-8 bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-xs" data-icon="person">person</span>
+</div>
+</div>
+</header>
+<main class="pt-20 px-4 space-y-6 max-w-md mx-auto">
+<!-- System Status Header -->
+<section class="flex justify-between items-end mb-8">
+<div>
+<h2 class="font-headline text-3xl font-bold uppercase tracking-tight leading-none text-on-surface">Settings</h2>
+<p class="font-label text-xs text-secondary opacity-80 mt-1 flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary animate-pulse"></span>
+          OPTIMIZATION MODULE ACTIVE
+        </p>
+</div>
+<div class="text-right">
+<span class="font-label text-[10px] text-outline opacity-50 block">REF_ID: 882-RAID</span>
+<span class="font-label text-[10px] text-outline opacity-50 block">v4.0.2</span>
+</div>
+</section>
+<!-- Path Optimization - Tactile Switch -->
+<section class="bg-surface-container p-6 space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-label text-sm uppercase font-bold tracking-widest text-primary">RAID PRIORITY</span>
+<span class="material-symbols-outlined text-sm opacity-40" data-icon="info">info</span>
+</div>
+<div class="grid grid-cols-2 gap-0 p-1 bg-surface-container-lowest">
+<button class="py-4 font-headline text-xs font-bold uppercase tracking-widest transition-all bg-surface-container-highest text-secondary border-l-2 border-secondary">
+          Cheapest Path
+        </button>
+<button class="py-4 font-headline text-xs font-bold uppercase tracking-widest transition-all text-on-surface opacity-40 hover:bg-surface-variant">
+          Fastest Path
+        </button>
+</div>
+<p class="text-[10px] font-body opacity-60 leading-relaxed italic">
+        * Optimization logic favors lowest sulfur expenditure over mechanical speed.
+      </p>
+</section>
+<!-- Sliders Section -->
+<section class="space-y-4">
+<!-- Sulfur Tax Slider -->
+<div class="bg-surface-container p-6 space-y-6">
+<div class="flex justify-between items-baseline">
+<label class="font-label text-sm uppercase font-bold tracking-widest text-on-surface">SULFUR TAX</label>
+<span class="font-headline text-2xl font-bold text-secondary">15<span class="text-xs ml-1">%</span></span>
+</div>
+<div class="relative pt-2">
+<input class="w-full h-3" max="50" min="0" type="range" value="15"/>
+<div class="flex justify-between mt-2 font-label text-[10px] opacity-40 uppercase">
+<span>Minimum</span>
+<span>Maximum (50%)</span>
+</div>
+</div>
+</div>
+<!-- GP Multiplier Slider -->
+<div class="bg-surface-container p-6 space-y-6">
+<div class="flex justify-between items-baseline">
+<label class="font-label text-sm uppercase font-bold tracking-widest text-on-surface">GP MULTIPLIER</label>
+<span class="font-headline text-2xl font-bold text-secondary">x2.4</span>
+</div>
+<div class="relative pt-2">
+<input class="w-full h-3" max="10" min="1" step="0.1" type="range" value="2.4"/>
+<div class="flex justify-between mt-2 font-label text-[10px] opacity-40 uppercase">
+<span>Standard (1.0)</span>
+<span>Overclock (10.0)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Additional Toggles - Bento Style -->
+<div class="grid grid-cols-2 gap-3">
+<div class="bg-surface-container p-4 flex flex-col justify-between aspect-square">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary" data-icon="auto_fix">auto_fix</span>
+<div class="w-3 h-3 bg-secondary"></div>
+</div>
+<div>
+<span class="block font-label text-[10px] uppercase font-bold opacity-60">Auto-Calc</span>
+<span class="block font-headline text-sm font-bold uppercase">Enabled</span>
+</div>
+</div>
+<div class="bg-surface-container p-4 flex flex-col justify-between aspect-square">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-on-surface opacity-30" data-icon="visibility_off">visibility_off</span>
+<div class="w-3 h-3 bg-surface-container-highest"></div>
+</div>
+<div>
+<span class="block font-label text-[10px] uppercase font-bold opacity-60">Stealth Mode</span>
+<span class="block font-headline text-sm font-bold uppercase opacity-30">Disabled</span>
+</div>
+</div>
+</div>
+<!-- Technical Readout Card -->
+<section class="bg-surface-container-lowest p-4 border-l-4 border-error/50">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-error text-sm" data-icon="warning">warning</span>
+<h3 class="font-label text-[10px] font-bold uppercase text-error">Core Logic Alert</h3>
+</div>
+<p class="font-body text-xs text-on-surface/70 leading-normal">
+        Algorithm adjustments may affect real-time explosive trajectory predictions. Recalibrate sensors after saving.
+      </p>
+</section>
+<!-- Actions -->
+<div class="space-y-3 pb-8">
+<button class="w-full py-5 bg-gradient-to-br from-primary to-primary-container font-headline font-bold uppercase tracking-[0.2em] text-on-primary active:scale-[0.98] transition-transform">
+        Save Configuration
+      </button>
+<button class="w-full py-3 bg-surface-container-highest text-on-surface font-label text-xs uppercase font-bold tracking-widest border-l-2 border-secondary/50">
+        Reset to Default
+      </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 bg-[#20201f] h-16 flex justify-around items-center border-t-0 shadow-none">
+<!-- Calculator -->
+<a class="flex flex-col items-center justify-center text-[#e5e2e1] opacity-60 p-2 transition-all active:scale-95" href="/">
+<span class="material-symbols-outlined mb-1" data-icon="calculate">calculate</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Calculator</span>
+</a>
+<!-- Database -->
+<a class="flex flex-col items-center justify-center text-[#e5e2e1] opacity-60 p-2 transition-all active:scale-95" href="/database">
+<span class="material-symbols-outlined mb-1" data-icon="database">database</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Database</span>
+</a>
+<!-- Explosives -->
+<a class="flex flex-col items-center justify-center text-[#e5e2e1] opacity-60 p-2 transition-all active:scale-95" href="/explosives">
+<span class="material-symbols-outlined mb-1" data-icon="settings_applications">settings_applications</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Explosives</span>
+</a>
+<!-- Settings (ACTIVE) -->
+<a class="flex flex-col items-center justify-center text-[#e7c433] bg-[#353535] border-l-2 border-[#e7c433] p-2 transition-all active:scale-95" href="/settings">
+<span class="material-symbols-outlined mb-1" data-icon="settings" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Settings</span>
+</a>
+</nav>
+</body></html>
