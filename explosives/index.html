@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tactical Terminal - Explosives Guide</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#353535",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#dfe8a6",
+              "on-secondary-fixed-variant": "#554500",
+              "inverse-on-surface": "#313030",
+              "on-surface": "#e5e2e1",
+              "on-error-container": "#ffdad6",
+              "surface-dim": "#131313",
+              "on-tertiary-fixed-variant": "#434b18",
+              "on-secondary-container": "#453800",
+              "surface-tint": "#ffb3b0",
+              "background": "#131313",
+              "secondary": "#e7c433",
+              "primary": "#ffb3b0",
+              "inverse-surface": "#e5e2e1",
+              "secondary-fixed-dim": "#e7c433",
+              "on-primary": "#630c14",
+              "primary-fixed": "#ffdad8",
+              "tertiary-container": "#8d965b",
+              "tertiary": "#c3cc8c",
+              "tertiary-fixed-dim": "#c3cc8c",
+              "primary-fixed-dim": "#ffb3b0",
+              "secondary-container": "#c1a100",
+              "primary-container": "#e26c6c",
+              "on-secondary": "#3b2f00",
+              "outline": "#a48b89",
+              "on-tertiary-fixed": "#191e00",
+              "on-primary-container": "#5a040f",
+              "on-primary-fixed": "#410006",
+              "on-error": "#690005",
+              "on-tertiary": "#2d3404",
+              "on-tertiary-container": "#262d00",
+              "surface": "#131313",
+              "outline-variant": "#564241",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              "surface-container-high": "#2a2a2a",
+              "on-primary-fixed-variant": "#832428",
+              "surface-container": "#20201f",
+              "on-background": "#e5e2e1",
+              "surface-variant": "#353535",
+              "secondary-fixed": "#ffe174",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#ddc0be",
+              "inverse-primary": "#a23c3e",
+              "on-secondary-fixed": "#221b00",
+              "surface-bright": "#393939"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hud-glass {
+            background: rgba(53, 53, 53, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .metallic-polish {
+            background: linear-gradient(135deg, #ffb3b0 0%, #e26c6c 100%);
+        }
+        .status-pulse {
+            box-shadow: 0 0 8px #e7c433;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131313] border-b-2 border-[#20201f]">
+<div class="text-xl font-bold text-[#ffb3b0] uppercase font-['Space_Grotesk'] tracking-wider">TACTICAL TERMINAL</div>
+<div class="hidden md:flex items-center gap-8 font-['Space_Grotesk'] uppercase tracking-wider text-sm">
+<a class="text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors py-1 px-3" href="website.com/calculator">CALCULATOR</a>
+<a class="text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors py-1 px-3" href="website.com/database">DATABASE</a>
+<a class="text-[#ffb3b0] border-b-2 border-[#ffb3b0] pb-1 py-1 px-3" href="website.com/explosives">EXPLOSIVES</a>
+<a class="text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors py-1 px-3" href="website.com/settings">SETTINGS</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#ffb3b0] cursor-pointer hover:bg-[#353535] p-1 transition-colors">notifications</span>
+<span class="material-symbols-outlined text-[#ffb3b0] cursor-pointer hover:bg-[#353535] p-1 transition-colors">settings</span>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-16 bg-[#20201f] border-r-4 border-[#131313] w-64 font-['Space_Grotesk'] font-medium">
+<div class="p-6 border-b border-surface-container-highest">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary">person</span>
+</div>
+<div>
+<div class="text-lg font-black text-[#e7c433]">OPERATOR_01</div>
+<div class="text-[10px] opacity-60">V.2.04-STABLE</div>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-4">
+<a class="flex items-center gap-4 px-6 py-4 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all group" href="website.com/calculator">
+<span class="material-symbols-outlined">calculate</span>
+<span>Raid Hub</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all group" href="website.com/database">
+<span class="material-symbols-outlined">database</span>
+<span>Item DB</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 bg-[#353535] text-[#ffb3b0] border-l-4 border-[#e7c433] group" href="website.com/explosives">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span class="translate-x-1 duration-100">Explosives</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all group" href="website.com/settings">
+<span class="material-symbols-outlined">tune</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-4 bg-surface-container-lowest">
+<div class="flex items-center justify-between text-[10px] uppercase tracking-tighter text-outline">
+<span>Network Status</span>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 bg-tertiary status-pulse"></span>
+<span class="text-tertiary">Live</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 pt-24 pb-16 px-6 md:px-12">
+<header class="mb-12 border-l-8 border-secondary pl-6">
+<div class="flex justify-between items-end mb-2">
+<h1 class="text-5xl md:text-7xl font-headline font-black uppercase tracking-tighter">Explosives Guide</h1>
+<div class="text-right font-label text-xs tracking-widest text-secondary hidden md:block">
+                    REF: DATABASE_ORDNANCE_V4.0<br/>
+                    COORD: GRID_14B_SURVIVAL
+                </div>
+</div>
+<p class="font-body text-on-surface-variant max-w-2xl text-lg">Detailed technical breakdown of high-impact explosive tools for tactical demolition. Values adjusted for armor-grade reinforcement.</p>
+</header>
+<!-- Bento Grid for Explosives -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<!-- Timed Explosive Charge (C4) - Featured -->
+<div class="md:col-span-8 bg-surface-container p-6 relative overflow-hidden flex flex-col justify-between h-[450px]">
+<div class="absolute top-0 right-0 p-4">
+<span class="font-label text-[10px] bg-secondary text-on-secondary-fixed px-2 py-0.5">HIGH YIELD</span>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start relative z-10">
+<div class="w-full md:w-1/2 aspect-square bg-surface-container-lowest flex items-center justify-center p-8">
+<img class="w-full h-full object-contain filter grayscale invert brightness-150" data-alt="Technical drawing of a Timed Explosive Charge with digital timer and duct tape details in high contrast industrial style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbIYMN31sJAFe8AI9sMO4Cy_RR4glkIVtnhyp7R8hAcuSg9YujvYfuLpS__a3xD3c5-Np8uwWeIHrU_9r8AkO4XjubZw2ZpSvo50ABnIMcuj44FrvtoKJuE_11xtBhv-unKkglucKnYd00Ol9QGNXyaOi8Qx5Uy_rFSQVRp7DJA_GMvicD9f8uJ2RYSVbI4txbFgAZo_MxYDPijo5_DDtb6_VL4cpg1zP0Q4ska5QvyP02vr0hc1Yuh78S17BJm_W45KqHWWIokhPq"/>
+</div>
+<div class="w-full md:w-1/2">
+<h2 class="text-4xl font-headline font-bold text-primary mb-1 uppercase">Timed Explosive Charge</h2>
+<p class="text-secondary font-label text-sm mb-4">"THE DOOR OPENER"</p>
+<div class="space-y-4">
+<div>
+<div class="text-[10px] text-outline-variant uppercase mb-1">Crafting Cost</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-surface-container-highest px-2 py-1 text-xs border-b border-primary">20 EXPLOSIVES</span>
+<span class="bg-surface-container-highest px-2 py-1 text-xs border-b border-primary">5 TECH TRASH</span>
+<span class="bg-surface-container-highest px-2 py-1 text-xs border-b border-primary">3 CLOTH</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<div class="text-[10px] text-outline-variant uppercase mb-1">Damage Radius</div>
+<div class="text-3xl font-headline font-bold">4.0M</div>
+</div>
+<div>
+<div class="text-[10px] text-outline-variant uppercase mb-1">Activation Time</div>
+<div class="text-3xl font-headline font-bold text-secondary">10.0S</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center border-t border-surface-container-highest pt-4">
+<div class="flex gap-4">
+<div class="text-center">
+<div class="text-[10px] text-outline-variant uppercase">HQM Wall</div>
+<div class="font-headline font-black text-xl">3 REQ</div>
+</div>
+<div class="text-center">
+<div class="text-[10px] text-outline-variant uppercase">Sheet Door</div>
+<div class="font-headline font-black text-xl">1 REQ</div>
+</div>
+</div>
+<button class="metallic-polish text-on-primary px-8 py-3 font-headline font-bold uppercase hover:brightness-110 active:opacity-80 transition-all">Add to Plan</button>
+</div>
+</div>
+<!-- Satchel Charges -->
+<div class="md:col-span-4 bg-surface-container-high p-6 flex flex-col justify-between border-l-4 border-error">
+<div>
+<h3 class="text-2xl font-headline font-black uppercase text-error mb-1">Satchel Charges</h3>
+<p class="text-xs text-on-surface-variant font-body mb-6">Volatile demolition tool. High risk of dud activation or early detonation.</p>
+<div class="bg-surface-container-lowest p-4 mb-6">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] text-outline uppercase">Success Rate</span>
+<span class="text-secondary font-label">~85%</span>
+</div>
+<div class="w-full h-1 bg-surface-container-highest">
+<div class="h-full bg-secondary" style="width: 85%"></div>
+</div>
+</div>
+<ul class="space-y-4">
+<li class="flex justify-between items-center bg-surface-container p-2">
+<span class="text-xs uppercase text-on-surface opacity-70">Cost</span>
+<span class="font-label text-sm">4 BEANCANS</span>
+</li>
+<li class="flex justify-between items-center bg-surface-container p-2">
+<span class="text-xs uppercase text-on-surface opacity-70">Timer</span>
+<span class="font-label text-sm text-error">RANDOM (6-12s)</span>
+</li>
+<li class="flex justify-between items-center bg-surface-container p-2">
+<span class="text-xs uppercase text-on-surface opacity-70">Stone Wall</span>
+<span class="font-label text-sm">10 UNITS</span>
+</li>
+</ul>
+</div>
+<div class="mt-6 flex gap-2">
+<button class="flex-1 bg-surface-container-highest text-on-surface py-2 border-l-2 border-secondary font-label uppercase text-xs hover:bg-surface-bright transition-colors">Details</button>
+<button class="flex-1 bg-surface-container-highest text-on-surface py-2 border-l-2 border-secondary font-label uppercase text-xs hover:bg-surface-bright transition-colors">Compare</button>
+</div>
+</div>
+<!-- Rockets -->
+<div class="md:col-span-4 bg-surface-container p-6 border-l-4 border-tertiary">
+<div class="flex justify-between items-start mb-6">
+<h3 class="text-2xl font-headline font-black uppercase text-tertiary">Rockets</h3>
+<span class="material-symbols-outlined text-tertiary">rocket_launch</span>
+</div>
+<div class="aspect-video bg-surface-container-lowest mb-6 flex items-center justify-center p-4">
+<img class="w-full h-full object-contain" data-alt="Technical schematic of a high velocity rocket used for siege operations with detailed propulsion nozzle and warhead" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlAakbt30oZ-fFKSATaOuT7-VOEz7Cf0nnInORpiUPsb8sJDYc-fhfIt3t-rlgSdskYXbP63KvEoXLoKQRgWc-Tb0UmhMUTg7_CTrLCfoH4m25S2FXXOi_khXY9pG-PJevdjsqJ855mApPFYBBSIVa3FKTqUtJSc7J_fYJmfUFTxSjy0tuXDu5YxsoawwJhVMfZ0LJZJMEryYg7TqLf17TVB-brRcvWOk5uR1xYbQ2YO-VaZJ4ffCAD6A_t8Yyi7H5Eh0aCbQ1xEcT"/>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between text-sm border-b border-surface-container-highest pb-2">
+<span class="opacity-60 uppercase text-[10px]">Splash Damage</span>
+<span class="font-headline font-bold">175 HP</span>
+</div>
+<div class="flex justify-between text-sm border-b border-surface-container-highest pb-2">
+<span class="opacity-60 uppercase text-[10px]">Travel Speed</span>
+<span class="font-headline font-bold">35 M/S</span>
+</div>
+<div class="flex justify-between text-sm border-b border-surface-container-highest pb-2">
+<span class="opacity-60 uppercase text-[10px]">Garagedoor</span>
+<span class="font-headline font-bold text-secondary">3 REQ</span>
+</div>
+</div>
+</div>
+<!-- Explosive Ammo -->
+<div class="md:col-span-5 bg-surface-container p-6 relative">
+<div class="flex gap-6">
+<div class="w-24 bg-surface-container-lowest flex flex-col items-center justify-center p-2 border-r-2 border-primary-container">
+<span class="text-primary font-black font-headline text-3xl">5.56</span>
+<span class="text-[10px] text-outline uppercase tracking-widest mt-1">Explosive</span>
+</div>
+<div class="flex-1">
+<h3 class="text-2xl font-headline font-black uppercase text-on-surface mb-4">Explosive Ammo</h3>
+<div class="grid grid-cols-2 gap-4 mb-6">
+<div class="bg-surface-container-highest p-3">
+<div class="text-[10px] text-outline uppercase">Stealth Level</div>
+<div class="text-xl font-headline font-bold text-tertiary">QUIET</div>
+</div>
+<div class="bg-surface-container-highest p-3">
+<div class="text-[10px] text-outline uppercase">Cost / Shot</div>
+<div class="text-xl font-headline font-bold">10 GP</div>
+</div>
+</div>
+<p class="text-xs text-on-surface-variant font-body mb-4">Perfect for silent raiding and eco-raiding wood/sheet structures from a distance.</p>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-full"></span>
+<span class="text-[10px] uppercase font-label">Recommended for: Sheet Doors (63 Ammo)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Beancan Grenades -->
+<div class="md:col-span-3 bg-surface-container-highest p-6 border-l-4 border-outline-variant flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-xl font-headline font-black uppercase">Beancan</h3>
+<span class="material-symbols-outlined text-secondary">warning</span>
+</div>
+<p class="text-[11px] leading-relaxed mb-4 text-on-surface-variant">The entry-level explosive. Highly unpredictable and often fails to ignite. Use with extreme caution in confined spaces.</p>
+<div class="space-y-2">
+<div class="flex justify-between text-xs">
+<span class="opacity-60">Gunpowder</span>
+<span>60 Units</span>
+<div class="flex justify-between text-xs">
+<span class="opacity-60">Metal Frags</span>
+<span>20 Units</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-surface-variant">
+<div class="text-[10px] uppercase text-error-container font-black">Warning: High Dud Probability</div>
+</div>
+</div>
+</div>
+<!-- Raid Comparison Table -->
+<section class="mt-12 bg-surface-container p-8">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-3xl font-headline font-black uppercase tracking-tight">Reinforcement Breakdown</h2>
+<span class="text-[10px] font-label text-outline bg-surface-container-lowest px-4 py-1">CALIBRATED: HARDENED STEEL</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-label">
+<thead class="border-b border-surface-container-highest text-[10px] text-outline uppercase tracking-widest">
+<tr>
+<th class="py-4 font-normal">Target Structure</th>
+<th class="py-4 font-normal">C4 Cost</th>
+<th class="py-4 font-normal">Rocket Cost</th>
+<th class="py-4 font-normal">Satchel Cost</th>
+<th class="py-4 font-normal">Explo. Ammo</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="bg-surface-container-low hover:bg-surface-container-highest transition-colors">
+<td class="py-4 pl-2 font-bold uppercase">Wood Wall</td>
+<td class="py-4">1</td>
+<td class="py-4">1</td>
+<td class="py-4">3</td>
+<td class="py-4 text-secondary">26</td>
+</tr>
+<tr class="bg-surface-container hover:bg-surface-container-highest transition-colors">
+<td class="py-4 pl-2 font-bold uppercase">Stone Wall</td>
+<td class="py-4">2</td>
+<td class="py-4">4</td>
+<td class="py-4">10</td>
+<td class="py-4 text-secondary">185</td>
+</tr>
+<tr class="bg-surface-container-low hover:bg-surface-container-highest transition-colors">
+<td class="py-4 pl-2 font-bold uppercase">Metal Wall</td>
+<td class="py-4">4</td>
+<td class="py-4 text-secondary">8</td>
+<td class="py-4">23</td>
+<td class="py-4 text-secondary">400</td>
+</tr>
+<tr class="bg-surface-container hover:bg-surface-container-highest transition-colors">
+<td class="py-4 pl-2 font-bold uppercase">Armored Wall</td>
+<td class="py-4 text-primary font-black">8</td>
+<td class="py-4">15</td>
+<td class="py-4">46</td>
+<td class="py-4 text-secondary">799+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Floating Raid Cost Hud Overlay Concept -->
+<div class="mt-12 hud-glass border-l-4 border-secondary p-8 md:flex items-center justify-between">
+<div class="mb-6 md:mb-0">
+<div class="text-[10px] text-secondary uppercase font-black mb-1 tracking-widest">Selected Loadout Projection</div>
+<div class="flex gap-8">
+<div>
+<div class="text-4xl font-headline font-black text-on-surface">4,500</div>
+<div class="text-[10px] text-outline uppercase font-label">Sulfur Required</div>
+</div>
+<div>
+<div class="text-4xl font-headline font-black text-on-surface">12,200</div>
+<div class="text-[10px] text-outline uppercase font-label">Charcoal Required</div>
+</div>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="bg-surface-container-highest hover:bg-surface-bright text-on-surface px-6 py-4 font-headline font-bold uppercase tracking-tighter flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+                    Export Plan
+                </button>
+<button class="metallic-polish text-on-primary px-8 py-4 font-headline font-black uppercase tracking-tighter shadow-xl">
+                    Finalize Raid
+                </button>
+</div>
+</div>
+</div></div></main>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full flex justify-between items-center px-4 py-2 z-40 bg-[#0e0e0e] border-t-2 border-[#20201f] font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#e7c433]">
+<div class="flex items-center gap-4">
+<span class="text-[#e5e2e1] opacity-50">SYSTEM STATUS: OPTIMAL | GRID 14-B</span>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0] transition-colors" href="#">MANUAL</a>
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0] transition-colors" href="#">CHANGELOG</a>
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0] transition-colors" href="#">SUPPORT</a>
+<div class="flex items-center gap-1 ml-4 border-l border-surface-container-highest pl-4 text-on-surface opacity-30">
+<span>COORD: 54.2N 12.8W</span>
+</div>
+</div>
+</footer>
+</body></html>
