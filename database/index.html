@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TACTICAL TERMINAL - ITEM DB</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#353535",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#dfe8a6",
+              "on-secondary-fixed-variant": "#554500",
+              "inverse-on-surface": "#313030",
+              "on-surface": "#e5e2e1",
+              "on-error-container": "#ffdad6",
+              "surface-dim": "#131313",
+              "on-tertiary-fixed-variant": "#434b18",
+              "on-secondary-container": "#453800",
+              "surface-tint": "#ffb3b0",
+              "background": "#131313",
+              "secondary": "#e7c433",
+              "primary": "#ffb3b0",
+              "inverse-surface": "#e5e2e1",
+              "secondary-fixed-dim": "#e7c433",
+              "on-primary": "#630c14",
+              "primary-fixed": "#ffdad8",
+              "tertiary-container": "#8d965b",
+              "tertiary": "#c3cc8c",
+              "tertiary-fixed-dim": "#c3cc8c",
+              "primary-fixed-dim": "#ffb3b0",
+              "secondary-container": "#c1a100",
+              "primary-container": "#e26c6c",
+              "on-secondary": "#3b2f00",
+              "outline": "#a48b89",
+              "on-tertiary-fixed": "#191e00",
+              "on-primary-container": "#5a040f",
+              "on-primary-fixed": "#410006",
+              "on-error": "#690005",
+              "on-tertiary": "#2d3404",
+              "on-tertiary-container": "#262d00",
+              "surface": "#131313",
+              "outline-variant": "#564241",
+              "surface-container-lowest": "#0e0e0e",
+              "error-container": "#93000a",
+              "surface-container-high": "#2a2a2a",
+              "on-primary-fixed-variant": "#832428",
+              "surface-container": "#20201f",
+              "on-background": "#e5e2e1",
+              "surface-variant": "#353535",
+              "secondary-fixed": "#ffe174",
+              "surface-container-low": "#1c1b1b",
+              "on-surface-variant": "#ddc0be",
+              "inverse-primary": "#a23c3e",
+              "on-secondary-fixed": "#221b00",
+              "surface-bright": "#393939"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+      }
+      .hud-blur {
+        backdrop-filter: blur(20px);
+      }
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #0e0e0e; }
+      ::-webkit-scrollbar-thumb { background: #353535; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar from JSON -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131313] border-b-2 border-[#20201f]">
+<div class="text-xl font-bold text-[#ffb3b0] uppercase font-['Space_Grotesk'] tracking-wider">TACTICAL TERMINAL</div>
+<div class="hidden md:flex items-center gap-8 h-full">
+<a class="font-['Space_Grotesk'] uppercase tracking-wider text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors h-full flex items-center px-4" href="website.com/calculator">CALCULATOR</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-wider text-[#ffb3b0] border-b-2 border-[#ffb3b0] pb-1 hover:bg-[#353535] transition-colors h-full flex items-center px-4 mt-[2px]" href="website.com/database">DATABASE</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-wider text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors h-full flex items-center px-4" href="website.com/explosives">EXPLOSIVES</a>
+<a class="font-['Space_Grotesk'] uppercase tracking-wider text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors h-full flex items-center px-4" href="website.com/settings">SETTINGS</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 text-[#e5e2e1] hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined p-2 text-[#e5e2e1] hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors" data-icon="settings">settings</button>
+</div>
+</nav>
+<!-- SideNavBar from JSON -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-16 bg-[#20201f] border-r-4 border-[#131313] w-64 z-40">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[#e7c433]" data-icon="person">person</span>
+</div>
+<div>
+<div class="text-lg font-black text-[#e7c433] font-['Space_Grotesk'] leading-none">OPERATOR_01</div>
+<div class="text-[10px] text-[#e5e2e1] opacity-50 font-['Space_Grotesk']">V.2.04-STABLE</div>
+</div>
+</div>
+<div class="mt-4 flex-grow">
+<a class="flex items-center gap-4 px-6 py-4 font-['Space_Grotesk'] font-medium text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all group" href="website.com/calculator">
+<span class="material-symbols-outlined" data-icon="calculate">calculate</span>
+<span>Raid Hub</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 font-['Space_Grotesk'] font-medium bg-[#353535] text-[#ffb3b0] border-l-4 border-[#e7c433] transition-all translate-x-1 duration-100" href="website.com/database">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span>Item DB</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 font-['Space_Grotesk'] font-medium text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all group" href="website.com/explosives">
+<span class="material-symbols-outlined" data-icon="military_tech">military_tech</span>
+<span>Explosives</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 font-['Space_Grotesk'] font-medium text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all group" href="website.com/settings">
+<span class="material-symbols-outlined" data-icon="tune">tune</span>
+<span>Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:ml-64 pt-24 pb-20 px-6 min-h-screen">
+<!-- Header HUD -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-outline-variant/15 pb-8">
+<div class="space-y-1">
+<div class="flex items-center gap-2 text-secondary text-xs font-label tracking-widest mb-2">
+<span class="w-2 h-2 bg-secondary animate-pulse"></span>
+                        TERMINAL_ACCESS: GRANTED
+                    </div>
+<h1 class="font-headline text-5xl font-extrabold uppercase tracking-tight text-on-surface">Item Cost <span class="text-primary">Reference</span></h1>
+<p class="font-body text-on-surface-variant max-w-2xl mt-4">Surgical data on structure durability and explosive penetration costs. Cross-referenced with V.2.04 tactical field manuals.</p>
+</div>
+<div class="w-full md:w-96">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="search">search</span>
+</div>
+<input class="w-full bg-surface-container-lowest border-none border-b border-primary text-on-surface placeholder:text-outline/50 font-headline font-medium py-4 pl-12 focus:ring-0 focus:border-b-2 transition-all" placeholder="QUERY ITEM OR MATERIAL..." type="text"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Category Filters -->
+<div class="flex flex-wrap gap-4 mb-8">
+<button class="bg-primary text-on-primary font-headline font-bold text-xs px-6 py-2 tracking-widest uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="select_check_box">select_check_box</span> ALL STRUCTURES
+            </button>
+<button class="bg-surface-container text-on-surface font-headline font-bold text-xs px-6 py-2 tracking-widest uppercase flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="layers">layers</span> WALLS
+            </button>
+<button class="bg-surface-container text-on-surface font-headline font-bold text-xs px-6 py-2 tracking-widest uppercase flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="door_front">door_front</span> DOORS
+            </button>
+<button class="bg-surface-container text-on-surface font-headline font-bold text-xs px-6 py-2 tracking-widest uppercase flex items-center gap-2 hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="shield">shield</span> EXTERNAL
+            </button>
+</div>
+<!-- Bento Grid Data Display -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Item Card: Armored Wall -->
+<div class="bg-surface-container relative group">
+<div class="absolute top-0 right-0 p-2 text-[8px] font-label text-outline opacity-40">GRID_REF: A-102</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface">Armored Wall</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5">TIER 4</span>
+<span class="text-outline text-[10px] font-label uppercase">High Durability</span>
+</div>
+</div>
+<div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center">
+<img alt="Armored Wall Icon" class="w-10 h-10 opacity-80" data-alt="Stylized icon of a reinforced armored metal plate wall for a tactical survival game interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqAX3egUEyJ6Bepe08BW8p2ySu9ZsAvTxZG6_sxsHpGWcFmBigElfl63Y7FRv_3FByyrlVL5pInGeHwkVzK0-byF7wWevgodQ4mM0HN1N6cE3q_N6KsgaCfNCnNO5b6bv8Kiu66IrLABtKak4e_FGVMcrxs4lGOvK87HZJxlA9_Fwg0_19wpjmVuygypstKHUl9n_w3IVdjW994uIAFAGjDbBjPed9gzoxNy42IMi-Og2o7uqjLnU_49_R_vnzQE59wXpT2u5cKd_T"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
+<span class="text-xs font-label text-outline uppercase">Health Points</span>
+<span class="font-headline text-xl font-bold text-on-surface">2000 HP</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Rockets</span>
+<div class="font-headline text-lg font-black text-primary">15</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">C4</span>
+<div class="font-headline text-lg font-black text-primary">8</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Satchels</span>
+<div class="font-headline text-lg font-black text-primary">46</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-1 h-0 group-hover:h-full bg-secondary transition-all duration-300"></div>
+</div>
+<!-- Item Card: Sheet Metal Door -->
+<div class="bg-surface-container relative group">
+<div class="absolute top-0 right-0 p-2 text-[8px] font-label text-outline opacity-40">GRID_REF: D-405</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface">Metal Door</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5">TIER 2</span>
+<span class="text-outline text-[10px] font-label uppercase">Common Point</span>
+</div>
+</div>
+<div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center">
+<img alt="Metal Door Icon" class="w-10 h-10 opacity-80" data-alt="Stylized icon of a sheet metal door for a tactical survival game interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwb5dt5gNn6Sp2kHVbUFOVBQMfoGR_QHOT4G-Hax2yJ0T7Ti3yBUyyS76AgoqyMCu7asSdm2XTVCPuzbBClzn6VCV_QvmKMCUEpapQDq_xCPpRf8vpYYrlUUhtMrOf8ZIWVbHBSQqyNvxwTk7O5O0bBrcLI2IZpQ3fP5ZL9bUFo9U_AjrstD8Wr00N-arS624txwvHqjBNEEnaxEbYU9D0GIw8HpzQMocIoQUjLBOVyMjgsksBhFylPTtUcV93baOurn0H-0rdtxlF"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
+<span class="text-xs font-label text-outline uppercase">Health Points</span>
+<span class="font-headline text-xl font-bold text-on-surface">250 HP</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Rockets</span>
+<div class="font-headline text-lg font-black text-primary">2</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">C4</span>
+<div class="font-headline text-lg font-black text-primary">1</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Satchels</span>
+<div class="font-headline text-lg font-black text-primary">4</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-1 h-0 group-hover:h-full bg-secondary transition-all duration-300"></div>
+</div>
+<!-- Item Card: Garage Door -->
+<div class="bg-surface-container relative group border-2 border-secondary/20">
+<div class="absolute top-0 right-0 p-2 text-[8px] font-label text-outline opacity-40 uppercase">Recommended Target</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface">Garage Door</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5">TIER 3</span>
+<span class="text-secondary text-[10px] font-label uppercase">Primary Vulnerability</span>
+</div>
+</div>
+<div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center">
+<img alt="Garage Door Icon" class="w-10 h-10 opacity-80" data-alt="Stylized icon of a roll-up garage door for a tactical survival game interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwFRntum-FWw17pPMv59IyMC_Ae9sC9v09FGruz08P9nwXJE21ZUIC0-HgOp9ZVLdgmFMblKs2sY3GCqOO0lGcvY16psFpI1SRFZ2YLsudy9lT5uw0Kwa9_brqck4mzDoxa_XAnWroBy2_q_1q6GFMZkOOXAa4kQAgA9_f8OTcTcKA1X0KMwI8yFCdWIHqrL7peOmXPOrrkxp06M4AoZMdtN35gudXCsSeFdFQ9HA9lf0kuRKtyN-AjPOjDI3v-lV29gMERvC-I2tt"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
+<span class="text-xs font-label text-outline uppercase">Health Points</span>
+<span class="font-headline text-xl font-bold text-on-surface">600 HP</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Rockets</span>
+<div class="font-headline text-lg font-black text-primary">3</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">C4</span>
+<div class="font-headline text-lg font-black text-primary">2</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Satchels</span>
+<div class="font-headline text-lg font-black text-primary">9</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-1 h-full bg-secondary"></div>
+</div>
+<!-- Item Card: Stone Wall -->
+<div class="bg-surface-container relative group">
+<div class="absolute top-0 right-0 p-2 text-[8px] font-label text-outline opacity-40">GRID_REF: S-221</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface">Stone Wall</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5">TIER 2</span>
+<span class="text-outline text-[10px] font-label uppercase">Standard Barrier</span>
+</div>
+</div>
+<div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center">
+<img alt="Stone Wall Icon" class="w-10 h-10 opacity-80" data-alt="Stylized icon of a stacked stone wall for a tactical survival game interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPU848iE8Gqr3dbhBlOVDAfOGG035KdsrbD4CHTcGuC2dWc3pFgdPP7s598bzj5DN9Yf_PRS9b1kFpTk7QvUMyQNowkneaRCrzWGzgIblWc1JHlvqJuFhbLRJDCKtEk03wuTQ6pTHeOEa4qIx2xbIsy8a0nyFmN_Rbv_CsJm8ToO9NAPBgpJG-5j9TMOtwnkuQ5_hVaXleXgu2-XSRJOcRZIWKS0JXS3tNwU_ptgPv5tJd7iz7tJC4zwwiLzXu8hXXjkvU0M4BgVEv"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
+<span class="text-xs font-label text-outline uppercase">Health Points</span>
+<span class="font-headline text-xl font-bold text-on-surface">500 HP</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Rockets</span>
+<div class="font-headline text-lg font-black text-primary">4</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">C4</span>
+<div class="font-headline text-lg font-black text-primary">2</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Satchels</span>
+<div class="font-headline text-lg font-black text-primary">10</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-1 h-0 group-hover:h-full bg-secondary transition-all duration-300"></div>
+</div>
+<!-- Item Card: Tool Cupboard -->
+<div class="bg-surface-container relative group">
+<div class="absolute top-0 right-0 p-2 text-[8px] font-label text-outline opacity-40">GRID_REF: T-009</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface">Tool Cupboard</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5">CORE</span>
+<span class="text-outline text-[10px] font-label uppercase">Critical Objective</span>
+</div>
+</div>
+<div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center">
+<img alt="TC Icon" class="w-10 h-10 opacity-80" data-alt="Stylized icon of a wooden storage cabinet for a tactical survival game interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_uKlC0CUKS1Sd4qk2IpHQkmyUTqNKZqOv8Ia2UxZBAfFz13Ise_bHgmL5bfhURnIgWdfLnh9PuXcQG-xoJC9XFd95fbeSgp3MeyWDftprwgn-QUUUZhaxacrNcuVUF-klqc9YfstuhftRmH9Sjp1VeV-gOoJQ2vftV1dEZyRusTiX90vRwFrCfRxBx50QpHq9ZRGJXzPW9UhOfD6wkFAjryk7kSmQUbSeKvK9u8nGKJPyflVry3rVU8cRdMA1d0P6PGBz9ep0EHhl"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
+<span class="text-xs font-label text-outline uppercase">Health Points</span>
+<span class="font-headline text-xl font-bold text-on-surface">100 HP</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Rockets</span>
+<div class="font-headline text-lg font-black text-primary">1</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">C4</span>
+<div class="font-headline text-lg font-black text-primary">1</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Satchels</span>
+<div class="font-headline text-lg font-black text-primary">1</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-1 h-0 group-hover:h-full bg-secondary transition-all duration-300"></div>
+</div>
+<!-- Item Card: External Stone Wall -->
+<div class="bg-surface-container relative group">
+<div class="absolute top-0 right-0 p-2 text-[8px] font-label text-outline opacity-40">GRID_REF: E-992</div>
+<div class="p-6">
+<div class="flex items-start justify-between mb-8">
+<div>
+<h3 class="font-headline text-2xl font-bold uppercase text-on-surface">High Stone Wall</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-secondary/10 text-secondary text-[10px] font-bold px-2 py-0.5">TIER 2+</span>
+<span class="text-outline text-[10px] font-label uppercase">Perimeter Defense</span>
+</div>
+</div>
+<div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center">
+<img alt="High Wall Icon" class="w-10 h-10 opacity-80" data-alt="Stylized icon of a tall barbed wire stone wall for a tactical survival game interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6Q87DWVDaunJXOUX2o8erw_DYUP-e_YgYcAcK-ma-LlHdGXg1Zgzc6aGI6QUby426p0kAmOvxDLQpKP3bXdUqyc7JF8uoK3TWVFBVkc15ACW6MYEgVncrUkuFWpMowHXlrNfSbEpiBt3NIGxH5o_HgFeAC9nT2JKCRE_JjuLLd29M0vS2yDyW4Pocch3YeH_ermA041G__gmhmkxAmg9HevtxhWA_HX5jHOpzS1HdKqjRVCfO-bbysepVFWHmTLlfBbbTd1QDo9yu"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-end border-b border-outline-variant/10 pb-2">
+<span class="text-xs font-label text-outline uppercase">Health Points</span>
+<span class="font-headline text-xl font-bold text-on-surface">500 HP</span>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-6">
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Rockets</span>
+<div class="font-headline text-lg font-black text-primary">4</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">C4</span>
+<div class="font-headline text-lg font-black text-primary">2</div>
+</div>
+<div class="bg-surface-container-lowest p-3 flex flex-col items-center">
+<span class="text-[9px] font-label text-outline uppercase mb-1">Satchels</span>
+<div class="font-headline text-lg font-black text-primary">10</div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-1 h-0 group-hover:h-full bg-secondary transition-all duration-300"></div>
+</div>
+</div>
+<!-- System Log Utility Section -->
+<section class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="lg:col-span-2 bg-surface-container-low p-6 flex flex-col justify-between border-l-2 border-outline-variant/30">
+<div>
+<h4 class="font-headline text-sm font-bold uppercase tracking-wider text-secondary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="terminal">terminal</span> TACTICAL_ANALYSIS_LOG
+                    </h4>
+<div class="space-y-2 font-mono text-[10px] text-on-surface-variant">
+<p><span class="text-outline">[14:22:04]</span> INITIALIZING ITEM DATABASE V.2.04-STABLE...</p>
+<p><span class="text-outline">[14:22:05]</span> FETCHING EXPLOSIVE PENETRATION VALUES FOR ARMORED_WALL_TIER_4</p>
+<p><span class="text-primary">[14:22:06] ALERT:</span> HIGH-PRIORITY TARGET DETECTED: GARAGE_DOOR</p>
+<p><span class="text-outline">[14:22:08]</span> DATA STREAM SYNCHRONIZED WITH GLOBAL RAID CALCULATOR ENGINE</p>
+</div>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<span class="text-[9px] text-outline uppercase font-label">Status: Online // Connection: Encrypted</span>
+<div class="flex gap-1">
+<div class="w-1.5 h-1.5 bg-tertiary"></div>
+<div class="w-1.5 h-1.5 bg-tertiary/50"></div>
+<div class="w-1.5 h-1.5 bg-tertiary/20"></div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-highest p-8 flex flex-col justify-center items-center text-center">
+<span class="material-symbols-outlined text-4xl text-primary mb-4" data-icon="calculate">calculate</span>
+<h4 class="font-headline text-lg font-bold uppercase mb-2">Need Exact Totals?</h4>
+<p class="text-xs text-on-surface-variant mb-6">Launch the full Raid Calculator to combine multiple items and calculate exact sulfur requirements.</p>
+<button class="w-full bg-primary text-on-primary font-headline font-black py-4 uppercase tracking-widest text-xs hover:bg-primary-container transition-colors">
+                    OPEN RAID HUB
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="fixed bottom-0 w-full flex justify-between items-center px-4 py-2 z-40 bg-[#0e0e0e] border-t-2 border-[#20201f] font-['Inter'] text-[10px] uppercase tracking-[0.2em] text-[#e7c433]">
+<div class="flex gap-6">
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0] transition-all" href="#">MANUAL</a>
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0] transition-all" href="#">CHANGELOG</a>
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0] transition-all" href="#">SUPPORT</a>
+</div>
+<div class="text-[#e7c433]">SYSTEM STATUS: OPTIMAL | GRID 14-B</div>
+</footer>
+</body></html>
