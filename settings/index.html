@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tactical Terminal - Settings &amp; Efficiency</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-highest": "#353535",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#dfe8a6",
+                        "on-secondary-fixed-variant": "#554500",
+                        "inverse-on-surface": "#313030",
+                        "on-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131313",
+                        "on-tertiary-fixed-variant": "#434b18",
+                        "on-secondary-container": "#453800",
+                        "surface-tint": "#ffb3b0",
+                        "background": "#131313",
+                        "secondary": "#e7c433",
+                        "primary": "#ffb3b0",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed-dim": "#e7c433",
+                        "on-primary": "#630c14",
+                        "primary-fixed": "#ffdad8",
+                        "tertiary-container": "#8d965b",
+                        "tertiary": "#c3cc8c",
+                        "tertiary-fixed-dim": "#c3cc8c",
+                        "primary-fixed-dim": "#ffb3b0",
+                        "secondary-container": "#c1a100",
+                        "primary-container": "#e26c6c",
+                        "on-secondary": "#3b2f00",
+                        "outline": "#a48b89",
+                        "on-tertiary-fixed": "#191e00",
+                        "on-primary-container": "#5a040f",
+                        "on-primary-fixed": "#410006",
+                        "on-error": "#690005",
+                        "on-tertiary": "#2d3404",
+                        "on-tertiary-container": "#262d00",
+                        "surface": "#131313",
+                        "outline-variant": "#564241",
+                        "surface-container-lowest": "#0e0e0e",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#832428",
+                        "surface-container": "#20201f",
+                        "on-background": "#e5e2e1",
+                        "surface-variant": "#353535",
+                        "secondary-fixed": "#ffe174",
+                        "surface-container-low": "#1c1b1b",
+                        "on-surface-variant": "#ddc0be",
+                        "inverse-primary": "#a23c3e",
+                        "on-secondary-fixed": "#221b00",
+                        "surface-bright": "#393939"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    },
+                    borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #131313; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #353535; }
+        .glass-panel {
+            background: rgba(53, 53, 53, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .hazard-glow {
+            box-shadow: 0px 0px 8px rgba(231, 196, 51, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body overflow-x-hidden selection:bg-secondary selection:text-on-secondary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-6 h-16 bg-[#131313] border-b-2 border-[#20201f] font-['Space_Grotesk'] uppercase tracking-wider">
+<div class="text-xl font-bold text-[#ffb3b0] uppercase">TACTICAL TERMINAL</div>
+<div class="hidden md:flex items-center gap-8 h-full">
+<a class="text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors px-2 py-1" href="https://website.com/calculator">CALCULATOR</a>
+<a class="text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors px-2 py-1" href="https://website.com/database">DATABASE</a>
+<a class="text-[#e5e2e1] opacity-70 hover:bg-[#353535] hover:text-[#ffb3b0] transition-colors px-2 py-1" href="https://website.com/explosives">EXPLOSIVES</a>
+<a class="text-[#ffb3b0] border-b-2 border-[#ffb3b0] pb-1 hover:bg-[#353535] transition-colors px-2" href="https://website.com/settings">SETTINGS</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#e5e2e1] opacity-70 hover:text-[#ffb3b0]">notifications</button>
+<button class="material-symbols-outlined text-[#ffb3b0]">settings</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col h-screen fixed left-0 top-0 pt-16 bg-[#20201f] border-r-4 border-[#131313] w-64 font-['Space_Grotesk'] font-medium z-40">
+<div class="p-6 border-b-2 border-[#131313]">
+<div class="text-lg font-black text-[#e7c433]">OPERATOR_01</div>
+<div class="text-[10px] opacity-50 tracking-tighter">V.2.04-STABLE</div>
+</div>
+<div class="flex-1 py-4">
+<nav class="space-y-1">
+<a class="flex items-center gap-4 px-6 py-4 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all" href="https://website.com/calculator">
+<span class="material-symbols-outlined">calculate</span>
+<span>Raid Hub</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all" href="https://website.com/database">
+<span class="material-symbols-outlined">database</span>
+<span>Item DB</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 text-[#e5e2e1] hover:bg-[#131313] hover:text-[#e7c433] transition-all" href="https://website.com/explosives">
+<span class="material-symbols-outlined">military_tech</span>
+<span>Explosives</span>
+</a>
+<a class="flex items-center gap-4 px-6 py-4 bg-[#353535] text-[#ffb3b0] border-l-4 border-[#e7c433] translate-x-1 duration-100" href="https://website.com/settings">
+<span class="material-symbols-outlined">tune</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+<div class="p-6 bg-[#0e0e0e]">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 bg-tertiary shadow-[0_0_8px_rgba(195,204,140,0.5)]"></div>
+<span class="text-[10px] uppercase tracking-widest text-on-surface opacity-60">System Online</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-16 px-6 min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Header Section -->
+<header class="mb-10 flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h1 class="font-headline text-4xl font-extrabold uppercase tracking-tighter text-on-surface leading-none mb-2">Terminal_Configuration</h1>
+<p class="font-body text-sm text-outline-variant uppercase tracking-widest">Adjust raid efficiency algorithms and resource availability</p>
+</div>
+<div class="flex gap-2">
+<span class="label-sm bg-surface-container-highest px-3 py-1 text-[10px] text-secondary font-bold border-l-2 border-secondary">NODE_ID: 14-B</span>
+<span class="label-sm bg-surface-container-highest px-3 py-1 text-[10px] text-primary font-bold border-l-2 border-primary">SYNC_LEVEL: HIGH</span>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-1 mb-10">
+<!-- Efficiency Algorithm Bento -->
+<section class="md:col-span-8 bg-surface-container p-8 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">speed</span>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline text-xl font-bold text-primary uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">analytics</span> Efficiency_Logic
+                        </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Cheapest Path -->
+<button class="relative bg-surface-container-highest p-6 border-l-4 border-secondary text-left group transition-all hover:bg-surface-bright">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-secondary">database</span>
+<div class="w-4 h-4 border border-secondary flex items-center justify-center">
+<div class="w-2 h-2 bg-secondary"></div>
+</div>
+</div>
+<h3 class="font-headline font-bold text-on-surface uppercase mb-1">Cheapest Path</h3>
+<p class="text-xs text-on-surface opacity-60">Prioritize minimum sulfur cost. Deep logic for splash damage optimization.</p>
+<div class="mt-4 flex items-center gap-2">
+<span class="text-[10px] font-bold text-secondary uppercase tracking-widest">Current Active</span>
+</div>
+</button>
+<!-- Fastest Path -->
+<button class="relative bg-surface-container-low p-6 border-l-4 border-transparent text-left group transition-all hover:bg-surface-container-highest">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-on-surface opacity-40 group-hover:text-primary">timer</span>
+<div class="w-4 h-4 border border-outline-variant flex items-center justify-center"></div>
+</div>
+<h3 class="font-headline font-bold text-on-surface opacity-40 group-hover:opacity-100 uppercase mb-1">Fastest Path</h3>
+<p class="text-xs text-on-surface opacity-40 group-hover:opacity-60">Prioritize raid speed. Uses C4 and Rockets exclusively to bypass armor layers.</p>
+</button>
+</div>
+</div>
+</section>
+<!-- System Status Bento -->
+<section class="md:col-span-4 bg-surface-container-highest p-8 border-l-4 border-secondary">
+<h2 class="font-headline text-lg font-bold text-on-surface uppercase mb-4">Raid_Sync</h2>
+<div class="space-y-6">
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant border-opacity-20">
+<span class="text-[10px] uppercase font-bold text-outline-variant">Sulfur Index</span>
+<span class="text-xl font-headline font-bold text-secondary">3,420/HR</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant border-opacity-20">
+<span class="text-[10px] uppercase font-bold text-outline-variant">Craft Time</span>
+<span class="text-xl font-headline font-bold text-on-surface">OPTIMAL</span>
+</div>
+<div class="flex justify-between items-center pb-2 border-b border-outline-variant border-opacity-20">
+<span class="text-[10px] uppercase font-bold text-outline-variant">Boom Reserves</span>
+<span class="text-xl font-headline font-bold text-primary">FULL</span>
+</div>
+<div class="pt-4">
+<div class="h-1 w-full bg-surface-container-low">
+<div class="h-1 w-3/4 bg-primary hazard-glow"></div>
+</div>
+<p class="text-[8px] uppercase tracking-widest mt-2 text-outline-variant">Resource saturation at 75%</p>
+</div>
+</div>
+</section>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-1">
+<!-- Explosive Availability -->
+<section class="lg:col-span-2 bg-surface-container p-8">
+<h2 class="font-headline text-xl font-bold text-on-surface uppercase mb-8 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">military_tech</span> Explosive_Inventory
+                    </h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Rocket -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border-b border-outline-variant border-opacity-20">
+<div class="flex items-center gap-4">
+<img alt="highly detailed 3d render of a military rocket launcher projectile with worn metal texture" class="w-10 h-10 object-contain grayscale brightness-150" data-alt="close up technical render of a rusted military rocket head with red safety markings on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYR849SfNMFtACqv0JfGxBPJBHMKy-mZNqqcN-Z_A40OThbh5itqclJ0FsJUMPvZgQyq3kcgBDQc2PLVzOXNX1whJz9fA4KenMgBBeg7SuRBIrhTOkEUJLZppmMaPEX8ribfMeJ_7hZcM7Vv0YDgFZ6xhlLlp74-BzIsYYJ7LBvZ0s67rHkvYT4TUdeNvffQBlFZs8cnw2MwXyRdIXUWkjXbYxGPiHM1Pg0gZpRb3rjBfZZwKXVqBGRVZdVDuBoSSMVSiA3Z-7jeIO"/>
+<div>
+<div class="font-headline font-bold uppercase text-sm">Rocket</div>
+<div class="text-[10px] opacity-50 uppercase">Tier 3 Workbench</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary/20"></div>
+</label>
+</div>
+<!-- C4 -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border-b border-outline-variant border-opacity-20">
+<div class="flex items-center gap-4">
+<img alt="military grade timed explosive device with digital timer and wires on metal surface" class="w-10 h-10 object-contain grayscale brightness-150" data-alt="tactical high explosive block with complex wiring and red digital display panel showing 00:00" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIB3KbRIY-l_oUl--rlzdpr8APIMqmapXNcE88fpB5LvVYtXQ3bw6AZVyCQGungYSURqBZsjN0yMCcq7Z2gzKpnmi-smZ3oupaPTY9_3jL1DFxA5h1fMK3xhqujzoZiZ8_vwQGtViCZkGyU1z_eJX40xwYQq6s6a0bU9jXZzwLkJUT8BytFubFnm6YO63ospfCX7Abxx8wNUhzFI9t15idjAgqZx95t-6deWBdYfHPkwuPRHW1DIalZRvebOAkbHYCE0rpCdGj0Jo4"/>
+<div>
+<div class="font-headline font-bold uppercase text-sm">Timed Explosive</div>
+<div class="text-[10px] opacity-50 uppercase">Tier 3 Workbench</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary/20"></div>
+</label>
+</div>
+<!-- Satchel -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border-b border-outline-variant border-opacity-20">
+<div class="flex items-center gap-4">
+<img alt="improvised satchel charge with multiple bean cans and duct tape" class="w-10 h-10 object-contain grayscale brightness-150" data-alt="improvised scrap explosive satchel made from rusty cans and industrial tape with fuse poking out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDXQKSSHkp3PK_N4yZr6u-E03TYC17Xou1oqCzVxxh311D-PlL2-ErfSR8MCKHrhtNxhKrkEn_aqIzCK8DISijIfxWNx57_OxG67qUXJ4eKD-vF9X_VbUybGVMVSBRLt8PAlZGahctyVHGGUY0f5IRZ_Ju7rjcli8zvlhvrbBZrclFMu0HVLuJzm2fFiHaFDjKSkMdiM7Vh_Etz3i2wSeJACcdybQo9ad_IO9dPSUA6CY3lUZbUUhMlUjH8fDKHXEeN4EJSCYernsE"/>
+<div>
+<div class="font-headline font-bold uppercase text-sm">Satchel Charge</div>
+<div class="text-[10px] opacity-50 uppercase">Tier 2 Workbench</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface opacity-30 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary/20"></div>
+</label>
+</div>
+<!-- Explosive Ammo -->
+<div class="flex items-center justify-between p-4 bg-surface-container-low border-b border-outline-variant border-opacity-20">
+<div class="flex items-center gap-4">
+<img alt="military rifle rounds with red tip explosive heads" class="w-10 h-10 object-contain grayscale brightness-150" data-alt="close up macro shot of 5.56 rifle cartridges with bright red painted tips for explosive payload" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFtT9LTDVisAZLc45Nj6QIDD8E49xLJvpHzI8gPPQ220ZE25kOBgom8OPnG-NzmNEUZkHcHFiOCy3Z1g20pPQMcHXVMaAZigrTBaMbl2akfObKHbF6gEzalulHlNGUAT9i1mf_ijtfchZJycl-XZ7YMk1-J-niULjXjIO2M7Wy99ntXt238b-Utmey1TmYbsR5LBa8mkoXkxO1X6JPu8tFoIqEVxqI8Jb2uRDhBTK9oaDXsrSqTylxej_6M1xV9zjTIfEicJQvTJQw"/>
+<div>
+<div class="font-headline font-bold uppercase text-sm">Explosive Ammo</div>
+<div class="text-[10px] opacity-50 uppercase">Tier 2 Workbench</div>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary/20"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Cost Modifiers -->
+<section class="bg-surface-container p-8">
+<h2 class="font-headline text-xl font-bold text-secondary uppercase mb-8">Cost_Modifiers</h2>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-[10px] uppercase font-bold tracking-widest">Sulfur Tax (%)</label>
+<span class="text-secondary font-headline font-bold">1.0X</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest appearance-none cursor-pointer accent-secondary" type="range"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="text-[10px] uppercase font-bold tracking-widest">GP Multiplier</label>
+<span class="text-secondary font-headline font-bold">1.2X</span>
+</div>
+<input class="w-full h-1 bg-surface-container-highest appearance-none cursor-pointer accent-secondary" type="range"/>
+</div>
+<div class="pt-4 border-t border-outline-variant border-opacity-20">
+<button class="w-full bg-primary text-on-primary py-4 font-headline font-black uppercase tracking-widest hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">save</span>
+                                Apply Settings
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 w-full flex justify-between items-center px-4 py-2 z-40 bg-[#0e0e0e] border-t-2 border-[#20201f] font-['Inter'] text-[10px] uppercase tracking-[0.2em]">
+<div class="text-[#e7c433]">SYSTEM STATUS: OPTIMAL | GRID 14-B</div>
+<div class="flex items-center gap-6">
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0]" href="#">MANUAL</a>
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0]" href="#">CHANGELOG</a>
+<a class="text-[#e5e2e1] opacity-50 hover:text-[#ffb3b0]" href="#">SUPPORT</a>
+</div>
+</footer>
+</body></html>
