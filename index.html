@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#ffb3b0",
+              "background": "#131313",
+              "secondary": "#e7c433",
+              "inverse-on-surface": "#313030",
+              "surface-variant": "#353535",
+              "surface-container": "#20201f",
+              "on-secondary-container": "#453800",
+              "tertiary": "#c3cc8c",
+              "on-background": "#e5e2e1",
+              "surface-container-lowest": "#0e0e0e",
+              "on-primary-fixed": "#410006",
+              "surface-container-highest": "#353535",
+              "secondary-fixed-dim": "#e7c433",
+              "on-secondary-fixed": "#221b00",
+              "primary-container": "#e26c6c",
+              "primary-fixed": "#ffdad8",
+              "error": "#ffb4ab",
+              "outline-variant": "#564241",
+              "on-secondary": "#3b2f00",
+              "on-tertiary": "#2d3404",
+              "surface-container-high": "#2a2a2a",
+              "on-primary-fixed-variant": "#832428",
+              "inverse-surface": "#e5e2e1",
+              "surface": "#131313",
+              "on-surface-variant": "#ddc0be",
+              "inverse-primary": "#a23c3e",
+              "secondary-fixed": "#ffe174",
+              "on-primary": "#630c14",
+              "secondary-container": "#c1a100",
+              "tertiary-fixed-dim": "#c3cc8c",
+              "primary": "#ffb3b0",
+              "surface-dim": "#131313",
+              "on-secondary-fixed-variant": "#554500",
+              "tertiary-fixed": "#dfe8a6",
+              "on-tertiary-container": "#262d00",
+              "error-container": "#93000a",
+              "surface-tint": "#ffb3b0",
+              "on-error": "#690005",
+              "on-primary-container": "#5a040f",
+              "outline": "#a48b89",
+              "tertiary-container": "#8d965b",
+              "on-tertiary-fixed-variant": "#434b18",
+              "on-tertiary-fixed": "#191e00",
+              "on-error-container": "#ffdad6",
+              "surface-bright": "#393939",
+              "surface-container-low": "#1c1b1b",
+              "on-surface": "#e5e2e1"
+            },
+            fontFamily: {
+              "headline": ["Space Grotesk"],
+              "body": ["Inter"],
+              "label": ["Space Grotesk"]
+            },
+            borderRadius: {"DEFAULT": "0", "lg": "0", "xl": "0", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hud-scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(255, 179, 176, 0.05) 50.5%, transparent 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+        }
+        /* Custom styles for toggled state */
+        .target-card-active {
+            background-color: #353535 !important;
+            border-left: 2px solid #e7c433 !important;
+        }
+        .target-card-active .icon-span {
+            color: #e7c433 !important;
+            font-variation-settings: 'FILL' 1 !important;
+        }
+        .target-card-active .status-text {
+            color: #e7c433 !important;
+        }
+        .target-card-active .accent-bar {
+            background-color: #e7c433 !important;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary selection:text-on-primary" x-data="raidCalculator()">
+<!-- TopAppBar -->
+<header class="bg-[#131313] dark:bg-[#131313] flex justify-between items-center w-full px-4 h-16 fixed top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#ffb3b0]" data-icon="terminal">terminal</span>
+<h1 class="font-['Space_Grotesk'] uppercase tracking-tighter text-lg font-bold text-[#ffb3b0]">TACTICAL TERMINAL</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-label text-[10px] text-primary opacity-50 tracking-widest hidden sm:block">SYS_STATUS: OPTIMAL</span>
+<div class="w-8 h-8 bg-surface-container-highest border-l-2 border-primary flex items-center justify-center overflow-hidden">
+<img alt="Pilot" class="w-full h-full object-cover" data-alt="gritty close-up portrait of a futuristic tactical soldier wearing a weathered metal helmet and orange-tinted visor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYDzYyNwwsB8k-oMqVzmDdL-81-7_vHSkQzeQlRpvhqImkQ-sxN5D8nAe3oeT2gnSEiS33S357cYNjiMjTDpeM4KZq8hzj0vLnvYggIawWMfNxbU7JNa_mONfPUHzDVHoHoNFXqfQx37P2HywvMkWOyE5dQW3PsryufN2kin5qlJ7CJ902PwKfb8N5WztAMZ4ZU5DOVXo3WG7jFtf5jEtgLX15Qdh-M77eoIu5LHwc8weUT7nlJM69V7DOdYRfJPOko60xHqKmfClM"/>
+</div>
+</div>
+</header>
+<main class="pt-20 pb-24 px-4 max-w-lg mx-auto">
+<!-- HUD Warning Banner -->
+<div class="bg-surface-container mb-6 p-3 flex items-center justify-between border-l-4 border-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="font-label text-xs uppercase font-bold tracking-tight">Active Operation: Raid Hub</span>
+</div>
+<span class="font-label text-[10px] text-secondary opacity-70">COORD: 42.1N 11.2E</span>
+</div>
+<!-- Real-time Calculator Summary -->
+<section class="bg-surface-container-highest mb-6 p-5 relative overflow-hidden">
+<div class="hud-scanline absolute inset-0"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-[10px] uppercase text-primary tracking-[0.2em]">Total Resource Output</span>
+<span class="font-label text-[10px] text-primary bg-primary/10 px-2 py-0.5">LIVE_DATA</span>
+</div>
+<div class="flex items-baseline justify-between">
+<h2 class="font-headline text-5xl font-bold tracking-tighter text-primary" id="sulfur-total">0</h2>
+<span class="font-headline text-xl text-primary/60">SULFUR</span>
+</div>
+<div class="mt-4 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-2">
+<p class="font-label text-[10px] uppercase text-on-surface-variant">Gunpowder</p>
+<p class="font-headline text-lg font-bold" id="gp-total">0</p>
+</div>
+<div class="bg-surface-container-lowest p-2">
+<p class="font-label text-[10px] uppercase text-on-surface-variant">Charcoal</p>
+<p class="font-headline text-lg font-bold" id="charcoal-total">0</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Target Selection (Bento Cards) -->
+<div class="mb-2 flex justify-between items-end px-1">
+<h3 class="font-label text-xs uppercase font-bold text-on-surface-variant tracking-widest">Select Raid Targets</h3>
+<span class="text-[10px] font-label text-secondary uppercase">Select_Multiple: ON</span>
+</div>
+<div class="grid grid-cols-2 gap-3 mb-8" id="target-grid">
+<!-- Door Card -->
+<button class="target-card bg-surface-container p-4 text-left hover:bg-surface-container-high transition-all active:scale-[0.98] group" id="card-armored_door" onclick="toggleTarget('armored_door')">
+<div class="flex justify-between items-start mb-6">
+<span class="icon-span material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="door_front">door_front</span>
+<span class="status-text font-label text-[10px] text-on-surface-variant">LVL 2</span>
+</div>
+<p class="font-headline text-sm font-bold uppercase tracking-tight">Armored Door</p>
+<div class="accent-bar mt-2 h-0.5 w-8 bg-primary transition-all"></div>
+</button>
+<!-- Wall Card -->
+<button class="target-card bg-surface-container p-4 text-left hover:bg-surface-container-high transition-all active:scale-[0.98] group" id="card-metal_wall" onclick="toggleTarget('metal_wall')">
+<div class="flex justify-between items-start mb-6">
+<span class="icon-span material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="square">square</span>
+<span class="status-text font-label text-[10px] text-on-surface-variant">SHEET</span>
+</div>
+<p class="font-headline text-sm font-bold uppercase tracking-tight">Sheet Metal Wall</p>
+<div class="accent-bar mt-2 h-0.5 w-8 bg-primary transition-all"></div>
+</button>
+<!-- Foundation Card -->
+<button class="target-card bg-surface-container p-4 text-left hover:bg-surface-container-high transition-all active:scale-[0.98] group" id="card-stone_foundation" onclick="toggleTarget('stone_foundation')">
+<div class="flex justify-between items-start mb-6">
+<span class="icon-span material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="layers">layers</span>
+<span class="status-text font-label text-[10px] text-on-surface-variant">LVL 4</span>
+</div>
+<p class="font-headline text-sm font-bold uppercase tracking-tight">Stone Foundation</p>
+<div class="accent-bar mt-2 h-0.5 w-8 bg-primary transition-all"></div>
+</button>
+<!-- Deployable Card -->
+<button class="target-card bg-surface-container p-4 text-left hover:bg-surface-container-high transition-all active:scale-[0.98] group" id="card-tc" onclick="toggleTarget('tc')">
+<div class="flex justify-between items-start mb-6">
+<span class="icon-span material-symbols-outlined text-on-surface-variant group-hover:text-primary" data-icon="inventory_2">inventory_2</span>
+<span class="status-text font-label text-[10px] text-on-surface-variant">DEPLOY</span>
+</div>
+<p class="font-headline text-sm font-bold uppercase tracking-tight">TC / Large Chest</p>
+<div class="accent-bar mt-2 h-0.5 w-8 bg-primary transition-all"></div>
+</button>
+</div>
+<!-- Resource Saturation Sliders -->
+<section class="bg-surface-container p-6 mb-8">
+<h3 class="font-label text-xs uppercase font-bold text-primary tracking-widest mb-6">Saturation Calibration</h3>
+<div class="space-y-8">
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label text-[10px] uppercase text-on-surface-variant">Raid Quantity</label>
+<span class="font-headline text-sm font-bold text-primary" id="qty-display">01</span>
+</div>
+<input class="w-full h-1 bg-surface-container-lowest appearance-none cursor-pointer accent-primary" id="qty-slider" max="50" min="1" oninput="updateQuantity(this.value)" type="range" value="1"/>
+</div>
+<div>
+<div class="flex justify-between mb-2">
+<label class="font-label text-[10px] uppercase text-on-surface-variant">Explosive Efficiency</label>
+<span class="font-headline text-sm font-bold text-secondary" id="eff-display">100%</span>
+</div>
+<input class="w-full h-1 bg-surface-container-lowest appearance-none cursor-pointer accent-secondary" max="100" min="1" oninput="updateEfficiency(this.value)" type="range" value="100"/>
+</div>
+</div>
+</section>
+<!-- Tactical Trigger Button -->
+<button class="w-full py-5 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-extrabold uppercase tracking-[0.15em] flex items-center justify-center gap-3 active:scale-95 transition-all shadow-[0_0_20px_rgba(255,179,176,0.2)]" id="generate-btn" onclick="generateCraftList()">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+            Generate Craft List
+        </button>
+<p class="text-center font-label text-[10px] text-on-surface-variant opacity-40 mt-8 tracking-widest uppercase">Terminal Version 4.02 // Rust Dev Branch</p>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-[#131313] border-t-0 py-1">
+<!-- Calculator Tab (Active) -->
+<a class="flex flex-col items-center justify-center text-[#e7c433] bg-[#353535] border-l-2 border-[#e7c433] p-2 flex-1 h-full" href="#">
+<span class="material-symbols-outlined" data-icon="calculate" style="font-variation-settings: 'FILL' 1;">calculate</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Calculator</span>
+</a>
+<!-- Database Tab -->
+<a class="flex flex-col items-center justify-center text-[#e5e2e1] opacity-60 p-2 flex-1 h-full hover:bg-surface-container-highest transition-all" href="https://website.com/database">
+<span class="material-symbols-outlined" data-icon="database">database</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Database</span>
+</a>
+<!-- Explosives Tab -->
+<a class="flex flex-col items-center justify-center text-[#e5e2e1] opacity-60 p-2 flex-1 h-full hover:bg-surface-container-highest transition-all" href="https://website.com/explosives">
+<span class="material-symbols-outlined" data-icon="settings_applications">settings_applications</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Explosives</span>
+</a>
+<!-- Settings Tab -->
+<a class="flex flex-col items-center justify-center text-[#e5e2e1] opacity-60 p-2 flex-1 h-full hover:bg-surface-container-highest transition-all" href="https://website.com/settings">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase font-bold">Settings</span>
+</a>
+</nav>
+<script>
+        // State management
+        const state = {
+            selectedTargets: new Set(),
+            quantity: 1,
+            efficiency: 1.0, // Multiplier (100% = 1.0)
+            costs: {
+                // Costs based on standard Rust raid logic (e.g., using C4 equivalent values for Sulfur)
+                // Armored Door: 2 C4 = 4400 Sulfur, 2000 Gunpowder, 3000 Charcoal (approx values)
+                'armored_door': { sulfur: 4400, gp: 2000, charcoal: 3000 },
+                // Metal Wall: 4 C4 = 8800 Sulfur...
+                'metal_wall': { sulfur: 8800, gp: 4000, charcoal: 6000 },
+                // Stone Foundation: 2 C4
+                'stone_foundation': { sulfur: 4400, gp: 2000, charcoal: 3000 },
+                // TC: 1 Satchel/Small amount. Let's say ~480 sulfur
+                'tc': { sulfur: 480, gp: 240, charcoal: 360 }
+            }
+        };
+
+        function toggleTarget(id) {
+            const card = document.getElementById(`card-${id}`);
+            if (state.selectedTargets.has(id)) {
+                state.selectedTargets.delete(id);
+                card.classList.remove('target-card-active');
+            } else {
+                state.selectedTargets.add(id);
+                card.classList.add('target-card-active');
+            }
+            calculateTotals();
+        }
+
+        function updateQuantity(val) {
+            state.quantity = parseInt(val);
+            document.getElementById('qty-display').textContent = state.quantity.toString().padStart(2, '0');
+            calculateTotals();
+        }
+
+        function updateEfficiency(val) {
+            state.efficiency = parseInt(val) / 100;
+            document.getElementById('eff-display').textContent = `${val}%`;
+            // In a real calculator, efficiency might increase resource requirements if low
+            // For this sim, we'll just update UI
+            calculateTotals();
+        }
+
+        function calculateTotals() {
+            let totalSulfur = 0;
+            let totalGP = 0;
+            let totalCharcoal = 0;
+
+            state.selectedTargets.forEach(targetId => {
+                const cost = state.costs[targetId];
+                totalSulfur += cost.sulfur;
+                totalGP += cost.gp;
+                totalCharcoal += cost.charcoal;
+            });
+
+            // Apply quantity
+            totalSulfur *= state.quantity;
+            totalGP *= state.quantity;
+            totalCharcoal *= state.quantity;
+
+            // Efficiency impact (simple inverse relation: lower efficiency = higher cost)
+            const effMultiplier = 1 / (state.efficiency || 1);
+            totalSulfur = Math.round(totalSulfur * effMultiplier);
+            totalGP = Math.round(totalGP * effMultiplier);
+            totalCharcoal = Math.round(totalCharcoal * effMultiplier);
+
+            // Update UI with formatting
+            document.getElementById('sulfur-total').textContent = totalSulfur.toLocaleString();
+            document.getElementById('gp-total').textContent = totalGP.toLocaleString();
+            document.getElementById('charcoal-total').textContent = totalCharcoal.toLocaleString();
+        }
+
+        function generateCraftList() {
+            if (state.selectedTargets.size === 0) {
+                alert("ERR: NO TARGETS SELECTED. INITIALIZE CALIBRATION.");
+                return;
+            }
+            
+            const btn = document.getElementById('generate-btn');
+            const originalText = btn.innerHTML;
+            
+            // Haptic/Visual feedback
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin">refresh</span> UPLOADING DATA...`;
+            btn.classList.add('opacity-80');
+            
+            setTimeout(() => {
+                btn.innerHTML = `<span class="material-symbols-outlined">check_circle</span> READY FOR DEPLOYMENT`;
+                btn.classList.remove('from-primary', 'to-primary-container');
+                btn.classList.add('from-secondary', 'to-on-secondary-container', 'text-black');
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('from-secondary', 'to-on-secondary-container', 'text-black', 'opacity-80');
+                    btn.classList.add('from-primary', 'to-primary-container');
+                    alert(`OPERATION SYNCED.\nResources calculated for ${state.quantity} raids.\nCheck Database for craft queue.`);
+                }, 2000);
+            }, 1200);
+        }
+
+        // Initialize display
+        calculateTotals();
+    </script>
+</body></html>
